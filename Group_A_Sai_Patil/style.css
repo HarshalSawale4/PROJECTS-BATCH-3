@@ -1,0 +1,104 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: url('WhatsApp Image 2025-03-31 at 1.32.04 PM.jpeg') no-repeat center center/cover;
+    background-size: cover;
+    color: #F5F5F5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(to right, #B93C3C, #6D1B1B); /* Deep red gradient */
+    padding: 10px 20px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #F5F5F5 !important;
+}
+
+.navbar-nav .nav-link {
+    color: #FFD180 !important; /* Soft Orange */
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+}
+
+/* Header */
+.header {
+    background: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    padding: 60px 20px;
+    color: #FFCCBC; /* Soft peach */
+}
+
+/* Features */
+.feature {
+    background: linear-gradient(to bottom right, #B93C3C, #6D1B1B); /* Dark red gradient */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
+    color: #F5F5F5;
+}
+
+.feature:hover {
+    transform: translateY(-5px);
+}
+
+/* Form Section */
+.form-container {
+    background: linear-gradient(to right, #B93C3C, #6D1B1B);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    color: #FFF8E1;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFD180;
+    border-radius: 6px;
+    border: none;
+    margin-bottom: 10px;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(to right, #6D1B1B, #B93C3C);
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: linear-gradient(to right, #B93C3C, #6D1B1B);
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(to right, #B93C3C, #6D1B1B);
+    padding: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: #F5F5F5;
+}
