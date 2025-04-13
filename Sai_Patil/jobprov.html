@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Provider Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            background-color: #B93C3C;
+            padding: 1rem;
+            color: white;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+        }
+
+        .job-post-form {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .submit-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .job-listings {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .job-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .job-title {
+            color: #007bff;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1>Job Provider</h1>
+            <div class="nav-links">
+                <a href="#post-job">Post Job</a>
+                <a href="#list-jobs">Your Jobs</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="job-post-form">
+        <h2>Post a New Job</h2>
+        <form id="jobForm">
+            <div class="form-group">
+                <label>Job Title</label>
+                <input type="text" id="jobTitle" required>
+            </div>
+            <div class="form-group">
+                <label>Company Name</label>
+                <input type="text" id="companyName" required>
+            </div>
+            <div class="form-group">
+                <label>Location</label>
+                <input type="text" id="location" required>
+            </div>
+            <div class="form-group">
+                <label>Salary</label>
+                <input type="text" id="salary" required>
+            </div>
+            <div class="form-group">
+                <label>Job Description</label>
+                <textarea id="description" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Post Job</button>
+        </form>
+    </div>
+
+    <div class="job-listings">
+        <h2>Your Posted Jobs</h2>
+        <div id="jobList"></div>
+    </div>
+
+    <script>
+        let jobs = [];
+
+        document.getElementById('jobForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newJob = {
+                title: document.getElementById('jobTitle').value,
+                company: document.getElementById('companyName').value,
+                location: document.getElementById('location').value,
+                salary: document.getElementById('salary').value,
+                description: document.getElementById('description').value
+            };
+            
+            jobs.push(newJob);
+            displayJobs();
+            this.reset();
+        });
+
+        function displayJobs() {
+            const jobList = document.getElementById('jobList');
+            jobList.innerHTML = '';
+            jobs.forEach((job, index) => {
+                const jobCard = document.createElement('div');
+                jobCard.className = 'job-card';
+                jobCard.innerHTML = `
+                    <h3 class="job-title">${job.title}</h3>
+                    <p>${job.company} - ${job.location}</p>
+                    <p>Salary: ${job.salary}</p>
+                    <p>${job.description}</p>
+                    <button onclick="deleteJob(${index})">Delete</button>
+                `;
+                jobList.appendChild(jobCard);
+            });
+        }
+
+        function deleteJob(index) {
+            jobs.splice(index, 1);
+            displayJobs();
+        }
+    </script>
+</body>
+</html>

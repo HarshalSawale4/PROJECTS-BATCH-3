@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JobPortal - Home</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Custom CSS (Optional External) -->
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .body {
+      background-image: url(/p3.jpg);
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #f8f9fa;
+      margin-bottom: 50px;
+    }
+
+    #foot {
+      margin-bottom: 150p;
+    }
+
+    .back-arrow {
+      cursor: pointer;
+      color: #007bff;
+      font-size: 16px;
+      display: none;
+    }
+
+    .d-none {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">JobPortal</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about_us.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="jobprov.html">Posted Jobs</a></li> <!-- New Link -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="header text-center py-5">
+    <div class="container">
+      <h1>Welcome to JobPortal</h1>
+      <p>Find your dream job or the perfect candidate.</p>
+
+      <!-- Login/Register Card -->
+      <div class="mx-auto mt-4 p-4 rounded shadow" style="max-width: 400px; background: white;">
+        <!-- Back Arrow -->
+        <div id="backArrow" class="text-start mb-2 back-arrow" onclick="goBack()">← Back</div>
+
+        <!-- Main Selection -->
+        <div id="section-main">
+          <button class="btn btn-primary w-100 mb-2" onclick="nextSection('login')">Login</button>
+          <button class="btn btn-secondary w-100" onclick="nextSection('register')">Register</button>
+        </div>
+
+        <!-- Role Selection -->
+        <div id="section-role" class="d-none">
+          <h5 id="roleTitle" class="mb-3">Login as</h5>
+          <button class="btn btn-info w-100 mb-2" onclick="nextForm('provider')">Job Provider</button>
+          <button class="btn btn-info w-100" onclick="nextForm('seeker')">Job Seeker</button>
+        </div>
+
+        <!-- Login Form Section -->
+        <div id="section-form" class="d-none">
+          <h5 id="formTitle" class="mb-3">Login</h5>
+          <input type="email" id="loginEmail" class="form-control mb-2" placeholder="Email" />
+          <input type="password" id="loginPassword" class="form-control mb-3" placeholder="Password" />
+          <button class="btn btn-success w-100" onclick="submitForm()">Submit</button>
+        </div>
+
+        <!-- Job Provider Registration Section -->
+        <div id="section-job-provider-register" class="d-none">
+          <h5 class="mb-3">Register as Job Provider</h5>
+          <input type="text" id="providerName" class="form-control mb-2" placeholder="Full Name" required>
+          <input type="email" id="providerEmail" class="form-control mb-2" placeholder="Email" required>
+          <input type="password" id="providerPassword" class="form-control mb-3" placeholder="Password" required>
+          <button class="btn btn-success w-100" onclick="registerProvider()">Register</button>
+        </div>
+
+        <!-- Job Seeker Registration Section -->
+        <div id="section-job-seeker-register" class="d-none">
+          <h5 class="mb-3">Register as Job Seeker</h5>
+          <input type="text" id="seekerName" class="form-control mb-2" placeholder="Full Name" required>
+          <input type="email" id="seekerEmail" class="form-control mb-2" placeholder="Email" required>
+          <input type="password" id="seekerPassword" class="form-control mb-3" placeholder="Password" required>
+          <button class="btn btn-success w-100" onclick="registerSeeker()">Register</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Job Provider Form Section -->
+  <div id="section-job-provider" class="d-none">
+    <h5 class="mb-3">Post a New Job</h5>
+    <form id="jobForm">
+      <input type="text" id="jobTitle" class="form-control mb-2" placeholder="Job Title" required />
+      <input type="text" id="companyName" class="form-control mb-2" placeholder="Company Name" required />
+      <input type="text" id="location" class="form-control mb-2" placeholder="Location" required />
+      <input type="text" id="salary" class="form-control mb-2" placeholder="Salary" required />
+      <textarea id="description" class="form-control mb-3" placeholder="Job Description" required></textarea>
+      <button type="button" class="btn btn-success w-100" onclick="postJob()">Post Job</button>
+    </form>
+  </div>
+
+  <!-- Features Section -->
+  <section class="container text-center my-5">
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <div class="feature">
+          <h3>Job Seekers</h3>
+          <p>Find the best jobs tailored to your skills and interests.</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="feature">
+          <h3>Job Providers</h3>
+          <p>Post job listings and find qualified candidates quickly.</p>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="feature">
+          <h3>Easy Navigation</h3>
+          <p>Our platform is easy to use with a clean and simple interface.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Posted Jobs Section -->
+  <section class="container text-center my-5" id="posted-jobs" style="display: none;">
+    <h2>Posted Jobs</h2>
+    <div id="jobList">
+      <!-- Job listings will be dynamically added here -->
+    </div>
+    <button class="btn btn-secondary" onclick="goBack()">Back</button> <!-- Back Button -->
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p id="foot">&copy; 2025 JobPortal. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script -->
+  <script>
+    let action = '';
+    let role = '';
+    let historyStack = ['main'];
+    let jobs = []; // Array to store posted jobs
+
+    function showSection(sectionId) {
+      document.getElementById("section-main").classList.add("d-none");
+      document.getElementById("section-role").classList.add("d-none");
+      document.getElementById("section-form").classList.add("d-none");
+      document.getElementById("section-job-provider").classList.add("d-none");
+      document.getElementById("section-job-provider-register").classList.add("d-none"); // add this
+      document.getElementById("section-job-seeker-register").classList.add("d-none"); // add this
+      document.getElementById("posted-jobs").style.display = 'none';
+    
+      document.getElementById("section-" + sectionId).classList.remove("d-none");
+      document.getElementById("backArrow").style.display = sectionId !== 'main' ? 'block' : 'none';
+    }
+    
+    function nextSection(act) {
+      action = act;
+      historyStack.push('role');
+      showSection('role');
+      document.getElementById('roleTitle').innerText = `${act === 'login' ? 'Login' : 'Register'} as`;
+    }
+
+    function nextForm(selectedRole) {
+      role = selectedRole;
+      if (action === 'register') {
+        if (role === 'provider') {
+          showSection('job-provider-register'); // show registration form for job provider
+        } else {
+          showSection('job-seeker-register'); // show registration form for job seeker
+        }
+      } else {
+        if (role === 'seeker') {
+          showSection('posted-jobs');
+          displayJobs();
+        } else {
+          showSection('job-provider');
+        }
+      }
+    }
+    
+    function goBack() {
+      if (historyStack.length > 1) {
+        historyStack.pop();
+        const previous = historyStack[historyStack.length - 1];
+        showSection(previous);
+      }
+    }
+
+    function submitForm() {
+      const email = document.getElementById("loginEmail").value.trim();
+      const password = document.getElementById("loginPassword").value.trim();
+    
+      if (!email || !password) {
+        alert("Please fill in all fields.");
+        return;
+      }
+    
+      fetch("login.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `email=${email}&password=${password}&role=${role}`
+      })
+      .then(res => res.text())
+      .then(data => {
+        alert(data);
+        if (data.includes("successful")) {
+          if (role === 'provider') {
+            showSection('job-provider');
+          } else {
+            showSection('posted-jobs');
+            displayJobs();
+          }
+        }
+      })
+      .catch(err => console.error(err));
+    }
+    
+    function postJob() {
+      const newJob = {
+        title: document.getElementById('jobTitle').value,
+        company: document.getElementById('companyName').value,
+        location: document.getElementById('location').value,
+        salary: document.getElementById('salary').value,
+        description: document.getElementById('description').value
+      };
+
+      jobs.push(newJob); // Add the new job to the jobs array
+      alert("Job posted successfully!");
+      document.getElementById('jobForm').reset(); // Reset the form
+    }
+
+    function displayJobs() {
+      const jobList = document.getElementById('jobList');
+      jobList.innerHTML = ''; // Clear the job list
+      jobs.forEach((job, index) => {
+        const jobCard = document.createElement('div');
+        jobCard.className = 'job-card';
+        jobCard.innerHTML = `
+          <h3 class="job-title">${job.title}</h3>
+          <p>${job.company} - ${job.location}</p>
+          <p>Salary: ${job.salary}</p>
+          <p>${job.description}</p>
+        `;
+        jobList.appendChild(jobCard);
+      });
+    }
+
+    function registerProvider() {
+      const name = document.getElementById("providerName").value;
+      const email = document.getElementById("providerEmail").value;
+      const password = document.getElementById("providerPassword").value;
+    
+      if (!name || !email || !password) {
+        alert("All fields are required.");
+        return;
+      }
+    
+      fetch("register.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `name=${name}&email=${email}&password=${password}`
+      })
+      .then(res => res.text())
+      .then(data => {
+        alert(data);
+        showSection('main');
+      })
+      .catch(err => console.error(err));
+    }
+
+    function registerSeeker() {
+      const name = document.getElementById("seekerName").value;
+      const email = document.getElementById("seekerEmail").value;
+      const password = document.getElementById("seekerPassword").value;
+    
+      if (!name || !email || !password) {
+        alert("All fields are required.");
+        return;
+      }
+    
+      fetch("register.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `name=${name}&email=${email}&password=${password}`
+      })
+      .then(res => res.text())
+      .then(data => {
+        alert(data);
+        showSection('main');
+      })
+      .catch(err => console.error(err));
+    }
+    
+  </script>
+</body>
+</html>
